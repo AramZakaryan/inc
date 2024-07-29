@@ -1,5 +1,10 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
-import { GetAllPostsResponse, GetPostsArgs } from '@/service/inc.types'
+import {
+  GetAllPostsResponse,
+  GetPostsArgs,
+  GetProfileResponse,
+  updateProfileArgs,
+} from '@/service/inc.types'
 
 /** ZA: inc Api */
 export const incService = createApi({
@@ -34,7 +39,28 @@ export const incService = createApi({
         }
       },
     }),
+    getProfile: builder.query<GetProfileResponse, void>({
+      query: () => {
+        return {
+          url: `/v1/users/profile`,
+        }
+      },
+    }),
+    updateProfile: builder.mutation<any, updateProfileArgs>({
+      query: body => {
+        return {
+          url: `/v1/users/profile`,
+          method: 'PUT',
+          body,
+        }
+      },
+    }),
   }),
 })
 
-export const { useGetPublicPostsQuery, useGetUsersQuery } = incService
+export const {
+  useGetPublicPostsQuery,
+  useGetUsersQuery,
+  useGetProfileQuery,
+  useUpdateProfileMutation,
+} = incService

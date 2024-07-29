@@ -36,3 +36,26 @@ export type GetPostsArgs = {
   sortBy?: string
   sortDirection?: 'asc' | 'desc'
 }
+
+export type GetProfileResponse = {
+  id: number
+  userName: string
+  firstName?: any
+  lastName?: any
+  city?: any
+  country?: any
+  dateOfBirth?: any
+  aboutMe?: any
+  createdAt: string
+  avatars: any[]
+}
+
+export type updateProfileArgs = {
+  userName: string
+  firstName: string
+  lastName: string
+  city?: string
+  country?: string
+  dateOfBirth?: string
+  aboutMe?: string
+}

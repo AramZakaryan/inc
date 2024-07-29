@@ -1,10 +1,16 @@
 import { Inter } from 'next/font/google'
 import Link from 'next/link'
-import { useGetPublicPostsQuery, useGetUsersQuery } from '@/service/inc.service'
+import {
+  useGetProfileQuery,
+  useGetPublicPostsQuery,
+  useGetUsersQuery,
+  useUpdateProfileMutation,
+} from '@/service/inc.service'
 import s from './index.module.scss'
 import ReactTimeAgo from 'react-time-ago'
 import { Loader } from '@/components/loader/loader'
 import { useState } from 'react'
+import {FormInput} from "@/components/form/form-input";
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -19,6 +25,10 @@ export default function Home() {
 
   // const { data: dataUsers } = useGetUsersQuery()
 
+  const { data: dataUser } = useGetProfileQuery()
+
+  const {} = useUpdateProfileMutation()
+
   if (isLoading)
     return (
       <div style={{ display: 'grid', width: '40vh', height: '100vh', placeItems: 'center' }}>
@@ -32,7 +42,11 @@ export default function Home() {
   return (
     <div>
       MAIN PAGE
-      <pre>{JSON.stringify(dataUsers, null, 2)}</pre>
+      <hr />
+        <FormInput name={name} control={}
+      <hr />
+      {/*<pre>{JSON.stringify(dataUsers, null, 2)}</pre>*/}
+      <pre>{JSON.stringify(dataUser, null, 2)}</pre>
       <select onChange={e => setPageSize(+e.currentTarget.value)}>
         <option value={4}>4</option>
         <option value={6} selected>
